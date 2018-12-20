@@ -2,5 +2,8 @@ FROM ligo/base:el7
 
 RUN yum install -y singularity-runtime singularity
 
-ENTRYPOINT [ "/usr/bin/singularity" ]
-CMD [ "--help" ]
+COPY entrypoint.sh /
+RUN chmod 0755 /entrypoint.sh
+
+ENTRYPOINT [ "/entrypoint.sh" ]
+CMD [ "alpine:latest" ]
